@@ -1,0 +1,34 @@
+#basic data manipulations of the Titanic data set
+
+from __future__ import absolute_import, division, print_function, unicode_literals
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from IPython.display import clear_output
+from six.moves import urllib
+
+import tensorflow.compat.v2.feature_column as fc
+
+import tensorflow as tf
+
+#read in data
+dftrain = pd.read_csv('https://storage.googleapis.com/tf-datasets/titanic/train.csv')
+dfeval = pd.read_csv('https://storage.googleapis.com/tf-datasets/titanic/eval.csv')
+
+#show first 5 entries of data
+#print(dftrain.head())
+
+#remove survived column from data
+y_train = dftrain.pop('survived')
+y_eval = dfeval.pop('survived')
+
+#print(y_train)
+
+#show row 0 of data
+#print(dftrain.loc[0], y_train.loc[0])
+
+#basic data stats
+#dftrain.describe()
+
+#rows and column numbers
+#dftrain.shape
