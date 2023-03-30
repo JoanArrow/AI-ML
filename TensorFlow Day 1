@@ -1,0 +1,23 @@
+import tensorflow as tf
+
+#creating different tensor data types
+#these are all scalar tensors (rank 0)
+string = tf.Variable("This is a string", tf.string)
+number = tf.Variable(324, tf.int16)
+floating = tf.Variable(3.567, tf.float64)
+
+rank1 = tf.Variable(["Test", "Ok", "Tim"], tf.string)
+rank2 = tf.Variable([["Hello", "Mother", "Hello", "Father"], ["Here", "We", "Are in", "Camp Granada"]], tf.string)
+
+#tf.rank(rank2)
+#numpy=rank
+
+#rank2.shape
+#dimensions of tensor
+
+#create an single list with two sublists containing 3 elements which are all ones
+T1 = tf.ones([1,2,3])
+#create a tensor with two lists each containing 3 sublists which are all of size one and have element one
+T2 = tf.reshape(T1, [2,3,1])
+#create a tensor with three lists that automatically calculates the shape of the remaining parameters to work with the starting point
+T3 = tf.reshape(T2, [3,-1])
