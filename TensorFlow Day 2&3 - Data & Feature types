@@ -1,4 +1,4 @@
-#basic data manipulations of the Titanic data set
+#data manipulations of the Titanic data set
 
 from __future__ import absolute_import, division, print_function, unicode_literals
 import numpy as np
@@ -21,6 +21,24 @@ dfeval = pd.read_csv('https://storage.googleapis.com/tf-datasets/titanic/eval.cs
 #remove survived column from data
 y_train = dftrain.pop('survived')
 y_eval = dfeval.pop('survived')
+
+
+#separate out features which are categorical or numerical
+categorical_columns = ['sex', 'n_siblings_spouses', 'parch', 'class', 'deck', 'embark_town', 'alone']
+
+numeric_columns = ['age', 'fare']
+
+
+#prepare list of coded categorical or numerical features
+feature_columns =[]
+for feature_name in categorical_columns:
+    vocabulary = dftrain[feature_name].unique()
+    feature_columns.append(tf.feature_column.categorical_column_with_vocabulary_list(feature_name, vocabulary))
+        
+for feature_name in numeric_columns:
+    feature_columns.append(tf.feature_column.numeric_column(feature_name, dtype=tf.float32))
+    
+print(feature_columns)
 
 #print(y_train)
 
